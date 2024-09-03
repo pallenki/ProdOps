@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify, Blueprint
 import os
 from werkzeug.utils import secure_filename
 from transformers import pipeline
-AIzaSyCJioqiXH21TYg2kGPH5QKON74leP6Opm0
 app = Flask(__name__)
 main = Blueprint('main', __name__)
 app.config['UPLOAD_FOLDER'] = 'uploaded_transcripts'
