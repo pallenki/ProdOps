@@ -1,0 +1,12 @@
+ The software crashes unexpectedly, sometimes in the middle of a task, and we end up losing our progress 
+The user interface is not intuitive at all, and this has been a significant pain point for our team 
+The crashes seem to happen more frequently when multiple users are logged in or when we’re processing larger data sets .
+The product doesn’t allow us to tailor it to our workflow 
+ The most significant challenge we’ve encountered is the lack of customization options 
+We’d like to see a significant reduction in the time spent on manual tasks and troubleshooting .
+New Transcript:
+The issue seems to occur more frequently when there are a lot of notifications coming in at once .
+New Transcript:
+This has caused us to miss critical deadlines and has created confusion among the team 
+New Transcript:
+ The biggest challenge is with the notifications system, but the notifications we receive are either delayed or don’t show up at all 

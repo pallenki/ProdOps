@@ -1,3 +1,5 @@
 Flask==2.3.2
 spacy==3.7.6
 openai==0.28
+transformers==4.33.2       # or the latest stable version you're using
+torch==2.0.1               # or the version that matches your system (CPU or GPU)

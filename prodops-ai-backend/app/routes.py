@@ -1,14 +1,15 @@
 from flask import Flask, request, jsonify, Blueprint
-import openai
 import os
 from werkzeug.utils import secure_filename
+from transformers import pipeline
 
 app = Flask(__name__)
 main = Blueprint('main', __name__)
 app.config['UPLOAD_FOLDER'] = 'uploaded_transcripts'
 app.config['INSIGHTS_FILE'] = 'insights.txt'  # File to store unique insights
 
-openai.api_key = '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'
+# Load a summarization model or a specific model for extracting insights
+extractor = pipeline("summarization")  # You can choose another task-specific pipeline if needed
 
 def load_existing_insights():
     try:
@@ -20,6 +21,7 @@ def load_existing_insights():
 
 def save_insights(new_insights):
     with open(app.config['INSIGHTS_FILE'], 'a') as file:
+        file.write(f"New Transcript:\n")
         for insight in new_insights:
             file.write(f"{insight}\n")
 
@@ -30,14 +32,9 @@ def filter_insights(new_insights):
 
 def extract_insights(transcript):
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "Extract the top three pain points, the ideal product solutions, and desired outcomes from the customer interview."},
-                {"role": "user", "content": transcript}
-            ]
-        )
-        insights = response.choices[0].message['content'].split('\n')  # Assuming insights are separated by new lines
+        # Generate a summary as insights
+        summary = extractor(transcript, max_length=150, min_length=50, do_sample=False)
+        insights = summary[0]['summary_text'].split('. ')  # Assuming insights are sentence-based
         return insights
     except Exception as e:
         print(f"Error processing transcript: {e}")
